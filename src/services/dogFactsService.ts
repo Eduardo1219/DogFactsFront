@@ -23,8 +23,8 @@ export function getDogFacts(search: string, start: number, take: number): Promis
 
     return response;
 }
-export function getDogFactsCount(search: string): Promise<BaseResponseDto<Number | undefined>> {
-    const result: BaseResponseDto<Number | undefined> = {
+export function getDogFactsCount(search: string): Promise<BaseResponseDto<number | undefined>> {
+    const result: BaseResponseDto<number | undefined> = {
         error: '',
         success: false,
         data: undefined

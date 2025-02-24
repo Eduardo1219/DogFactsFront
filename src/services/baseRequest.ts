@@ -19,7 +19,7 @@ export default async function callApi(
         configCall.body = JSON.stringify(body);
     }
 
-    // eslint-disable-next-line no-useless-catch
+     
     try {
         const r = await fetch(url, configCall);
         if (!r.ok) {

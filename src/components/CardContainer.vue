@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import CardFact from './CardFact.vue'
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted } from 'vue'
 import { getDogFacts, getDogFactsCount } from '../services/dogFactsService.ts'
-import Pagination from './Pagination.vue'
+import PaginationBar from './PaginationBar.vue'
 import SearchBar from './SearchBar.vue'
 
 const page = ref(1)
@@ -23,7 +23,7 @@ const showErrorMessageUser = () => {
   errorMessage.value = result.error;
 }
 
-async function getDogFactsAsync(filter: String) {
+async function getDogFactsAsync(filter: string) {
   await getCountDogFactsAsync(filter);
   const result = await getDogFacts(filter, page.value, take.value);
   if (!result.success) {
@@ -34,7 +34,7 @@ async function getDogFactsAsync(filter: String) {
   responseData.value = result.data;
 }
 
-async function getCountDogFactsAsync(filter: String) {
+async function getCountDogFactsAsync(filter: string) {
   const result = await getDogFactsCount(filter);
   if (!result.success) {
     showErrorMessageUser();
@@ -73,7 +73,7 @@ function calculatePages(count: number, pageSize: number): number {
   <div class="container-error" v-if="showErrorMessage">
     <p>Was not possible to get fact dogs!</p>
   </div>
-  <Pagination :currentPage="page" :totalPages="totalPages" @page-change="handlePageChange" />
+  <PaginationBar :currentPage="page" :totalPages="totalPages" @page-change="handlePageChange" />
 </template>
 <style scoped>
 .card {
@@ -108,7 +108,4 @@ function calculatePages(count: number, pageSize: number): number {
   size: 10px;
   font-size: medium;
 }
-
-/* @media (min-width: 1024px) {
-} */
 </style>
